@@ -36,28 +36,36 @@ def browse():
 		print 'Closed, no files selected'
 	dialog.destroy()
 
-def mainBox():
-	# Create box for xpm and label
-	box0 = gtk.HBox(False, 0)
-	box0.set_border_width(2)
+def sourceBox():
+	sBox = gtk.HBox(False, 0)
+	sBox.set_border_width(2)
 
 	label1 = gtk.Label("Browse")
 	button1 = gtk.Button()
 	button1.add(label1)
 	button1.connect("clicked", browseCallBack, "cool button")
 
-	label2 = gtk.Label("Browse")
-	button2 = gtk.Button()
-	button2.add(label2)
-	button2.connect("clicked", browseCallBack, "cool button")
+	entry = gtk.Entry()
 
-	# Pack the pixmap and label into the box
-	box0.pack_start(button1, False, False, 3)
-	box0.pack_start(button2, False, False, 3)
+	sBox.pack_start(entry, False, False, 3)
+	sBox.pack_start(button1, False, False, 3)
+	entry.show()
 	label1.show()
 	button1.show()
-	label2.show()
-	button2.show()
+
+	return sBox
+
+def mainBox():
+	box0 = gtk.HBox(False, 0)
+	box0.set_border_width(2)
+
+	sBox = sourceBox()
+	dBox = sourceBox()
+
+	box0.pack_start(sBox, False, False, 3)
+	box0.pack_start(dBox, False, False, 3)
+	sBox.show()
+	dBox.show()
 
 	return box0
 
